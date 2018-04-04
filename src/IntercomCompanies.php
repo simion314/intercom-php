@@ -2,23 +2,60 @@
 
 namespace Intercom;
 
-use GuzzleHttp\Client;
+class IntercomCompanies
+{
 
-class IntercomCompanies {
-  private $client;
+    /**
+     * @var IntercomClient
+     */
+    private $client;
 
-  public function __construct($client)
-  {
-    $this->client = $client;
-  }
+    /**
+     * IntercomCompanies constructor.
+     *
+     * @param IntercomClient $client
+     */
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
-  public function create($options)
-  {
-    return $this->client->post("companies", $options);
-  }
+    /**
+     * Creates a Company.
+     *
+     * @see    https://developers.intercom.io/reference#create-or-update-company
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function create($options)
+    {
+        return $this->client->post("companies", $options);
+    }
 
-  public function getCompanies($options)
-  {
-    return $this->client->get("companies", $options);
-  }
+    /**
+     * Updates a Company.
+     *
+     * @see    https://developers.intercom.io/reference#create-or-update-company
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function update($options)
+    {
+        return $this->create($options);
+    }
+
+    /**
+     * Returns list of Companies.
+     *
+     * @see    https://developers.intercom.io/reference#list-companies
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCompanies($options)
+    {
+        return $this->client->get("companies", $options);
+    }
 }

@@ -2,28 +2,60 @@
 
 namespace Intercom;
 
-use GuzzleHttp\Client;
+class IntercomNotes
+{
 
-class IntercomNotes {
-  private $client;
+    /**
+     * @var IntercomClient
+     */
+    private $client;
 
-  public function __construct($client)
-  {
-    $this->client = $client;
-  }
+    /**
+     * IntercomNotes constructor.
+     *
+     * @param IntercomClient $client
+     */
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
-  public function create($options)
-  {
-    return $this->client->post("notes", $options);
-  }
+    /**
+     * Creates Note.
+     *
+     * @see    https://developers.intercom.io/reference#create-a-note
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function create($options)
+    {
+        return $this->client->post("notes", $options);
+    }
 
-  public function getNotes($options)
-  {
-    return $this->client->get("notes", $options);
-  }
+    /**
+     * Lists Notes.
+     *
+     * @see    https://developers.intercom.io/reference#list-notes-for-a-user
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getNotes($options)
+    {
+        return $this->client->get("notes", $options);
+    }
 
-  public function getNote($id)
-  {
-    return $this->client->get("notes/" . $id, []);
-  }
+    /**
+     * Returns single Note.
+     *
+     * @see    https://developers.intercom.io/reference#view-a-note
+     * @param  string $id
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getNote($id)
+    {
+        return $this->client->get("notes/" . $id, []);
+    }
 }

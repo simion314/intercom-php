@@ -2,23 +2,45 @@
 
 namespace Intercom;
 
-use GuzzleHttp\Client;
+class IntercomBulk
+{
 
-class IntercomBulk {
-  private $client;
+    /**
+     * @var IntercomClient
+     */
+    private $client;
 
-  public function __construct($client)
-  {
-    $this->client = $client;
-  }
+    /**
+     * IntercomBulk constructor.
+     *
+     * @param IntercomClient $client
+     */
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
-  public function users($options)
-  {
-    return $this->client->post("bulk/users", $options);
-  }
+    /**
+     * Creates Users in bulk.
+     *
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function users($options)
+    {
+        return $this->client->post("bulk/users", $options);
+    }
 
-  public function events($options)
-  {
-    return $this->client->post("bulk/events", $options);
-  }
+    /**
+     * Creates Events in bulk.
+     *
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function events($options)
+    {
+        return $this->client->post("bulk/events", $options);
+    }
 }

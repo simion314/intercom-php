@@ -2,23 +2,47 @@
 
 namespace Intercom;
 
-use GuzzleHttp\Client;
+class IntercomEvents
+{
 
-class IntercomEvents {
-  private $client;
+    /**
+     * @var IntercomClient
+     */
+    private $client;
 
-  public function __construct($client)
-  {
-    $this->client = $client;
-  }
+    /**
+     * IntercomEvents constructor.
+     *
+     * @param IntercomClient $client
+     */
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
-  public function create($options)
-  {
-    return $this->client->post("events", $options);
-  }
+    /**
+     * Creates Event.
+     *
+     * @see    https://developers.intercom.io/reference#submitting-events
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function create($options)
+    {
+        return $this->client->post("events", $options);
+    }
 
-  public function getEvents($options)
-  {
-    return $this->client->get("events", array_merge(["type" => "user"], $options));
-  }
+    /**
+     * Lists User Events.
+     *
+     * @see    https://developers.intercom.io/reference#list-user-events
+     * @param  array $options
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getEvents($options)
+    {
+        return $this->client->get("events", array_merge(["type" => "user"], $options));
+    }
 }

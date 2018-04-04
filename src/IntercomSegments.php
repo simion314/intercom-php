@@ -2,7 +2,7 @@
 
 namespace Intercom;
 
-class IntercomTags
+class IntercomSegments
 {
 
     /**
@@ -21,28 +21,29 @@ class IntercomTags
     }
 
     /**
-     * Creates a Tag.
+     * Gets a single segment by ID.
      *
-     * @see    https://developers.intercom.io/reference#create-and-update-tags
-     * @param  array $options
+     * @see    https://developers.intercom.com/reference#view-a-segment
+     * @param  string $id
+     * @param  array  $options
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function tag($options)
+    public function getSegment($id, array $options = [])
     {
-        return $this->client->post("tags", $options);
+        return $this->client->get('segments/' . $id, $options);
     }
 
     /**
-     * Lists Tags.
+     * Lists Segments.
      *
-     * @see    https://developers.intercom.io/reference#list-tags-for-an-app
+     * @see    https://developers.intercom.com/reference#list-segments
      * @param  array $options
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getTags($options = [])
+    public function getSegments($options = [])
     {
-        return $this->client->get("tags", $options);
+        return $this->client->get("segments", $options);
     }
 }
