@@ -281,7 +281,7 @@ class IntercomClient
     {
         $this->setRateLimitDetails($response);
 
-        $stream = \GuzzleHttp\Psr7\stream_for($response->getBody());
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor($response->getBody());
         $data = json_decode($stream);
         return $data;
     }
